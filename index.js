@@ -1,7 +1,6 @@
 alert('Welcome to my Calculator');
 
-let num1, num2, calculateMethod, answer;
-let isValid = false;
+let calculateMethod, answer;
 
 // Calculate functions
 const add = (a, b) => a + b;
@@ -16,33 +15,40 @@ const isNumber = (input) => {
 
 const isValidCalculateMethod = (input) => ['/', '*', '-', '+'].includes(input);
 
-// Input 1
-while (!isValid) {
-  num1 = prompt('Please enter the first number');
-  if (isNumber(num1)) {
-    num1 = parseInt(num1);
-    isValid = true;
-  } else {
-    alert('Invalid input. Please enter a valid number.');
+const getValidInput = (promptMessage, validationFunction, errorMessage) => {
+  let input;
+  let isValid = false;
+  while (!isValid) {
+    input = prompt(promptMessage);
+    if (validationFunction(input)) {
+      isValid = true;
+    } else {
+      alert(errorMessage);
+    }
   }
-}
+  return input;
+};
 
-isValid = false;
+// Input 1
+const num1 = parseInt(
+  getValidInput(
+    'Please enter the first number',
+    isNumber,
+    'Invalid input. Please enter a valid number.'
+  )
+);
 
 // Input 2
-while (!isValid) {
-  num2 = prompt('Please enter the second number');
-  if (isNumber(num2)) {
-    num2 = parseInt(num2);
-    isValid = true;
-  } else {
-    alert('Invalid input. Please enter a valid number.');
-  }
-}
-
-isValid = false;
+const num2 = parseInt(
+  getValidInput(
+    'Please enter the first number',
+    isNumber,
+    'Invalid input. Please enter a valid number.'
+  )
+);
 
 // Input 3
+let isValid = false;
 while (!isValid) {
   calculateMethod = prompt('Please enter calculation method: /, *, -, +');
   if (isValidCalculateMethod(calculateMethod)) {
