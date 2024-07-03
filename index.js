@@ -1,7 +1,5 @@
 alert('Welcome to my Calculator');
 
-let calculateMethod, answer;
-
 // Calculate functions
 const add = (a, b) => a + b;
 const sub = (a, b) => a - b;
@@ -41,24 +39,21 @@ const num1 = parseInt(
 // Input 2
 const num2 = parseInt(
   getValidInput(
-    'Please enter the first number',
+    'Please enter the second number',
     isNumber,
     'Invalid input. Please enter a valid number.'
   )
 );
 
 // Input 3
-let isValid = false;
-while (!isValid) {
-  calculateMethod = prompt('Please enter calculation method: /, *, -, +');
-  if (isValidCalculateMethod(calculateMethod)) {
-    isValid = true;
-  } else {
-    alert('Invalid input. Please enter a valid calculation method: /, *, -, +');
-  }
-}
+const calculateMethod = getValidInput(
+  'Please enter calculation method: /, *, -, +',
+  isValidCalculateMethod,
+  'Invalid input. Please enter a valid calculation method: /, *, -, +'
+);
 
 // Calculate answer based on method
+let answer;
 switch (calculateMethod) {
   case '/':
     answer = div(num1, num2);
